@@ -10,16 +10,28 @@ function getMovie(url) {
     fetch(url)
     .then(res => res.json())
     .then(data => {
-       showMovies(data.results)
+        console.log(data.results)
+     showMovies(data.results)
     })
 
 
 }
 
 function showMovies(data){
-    data.forEach(movie =>{
-        const movieEl = document.createElement('div')
-        movieEl.classList.add('movie')
+    data.forEach(movie => {
+        const {title, poster_path, vote_average, overview} =movie 
+        const movieEl = document.createElement('div');
+        movieEl.classList.add('movie');
+        movieEl.innerHTML = `<img src="${IMG_URL+poster_path}" 
+        alt="${title}" style="background-size: cover;">
+        <div class="movie-info">
+            <h3>${title}</h3>
+            <span class="${getcolor(vote_average)}">${vote_average}</span>
+        </div>
+        <div class="overview">
+        <h3>overview</h3>
+        ${overview}
+        </div>`
     })
 
 }
