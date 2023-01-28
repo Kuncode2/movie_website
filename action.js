@@ -35,3 +35,19 @@ function showMovies(data){
     })
 
 }
+
+
+const main = document.getElementById('main');
+const form =  document.getElementById('form');
+const search = document.getElementById('search');
+const tagsEl = document.getElementById('tags');
+
+const prev = document.getElementById('prev')
+const next = document.getElementById('next')
+const current = document.getElementById('current')
+
+var currentPage = 1;
+var nextPage = 2;
+var prevPage = 3;
+var lastUrl = '';
+var totalPages = 100;
