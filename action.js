@@ -53,3 +53,30 @@ function getcolor(vote) {
     }
 }
 
+const overlayContent = document.getElementById('overlay-content');
+/* Open when someone clicks on the span element */
+function openNav(movie) 
+  let id = movie.id;
+  fetch(BASE_URL + '/movie/'+id+'/videos?'+API_KEY).then(res => res.json()).then(videoData => {
+    console.log(videoData);
+    if(videoData)
+      document.getElementById("myNav").style.width = "100%";
+      if(videoData.results.length > 0)
+        var embed = [];
+        var dots = [];
+        videoData.results.forEach((video, idx) => {
+          let {name, key, site} = video
+
+          if(site == 'YouTube'){
+              
+            embed.push(`
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="${name}" class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          
+          `)
+
+            dots.push(`
+              <span class="dot">${idx + 1}</span>
+            `)
+          }
+        })
+ 
